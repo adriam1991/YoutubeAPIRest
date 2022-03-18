@@ -74,16 +74,8 @@ public class User {
         return videoToCreate;
     }
 
-    private Video findVideo(String videoID) throws Exception {
-        for (Video video : new ArrayList<>(videos)) {
-            if (video.getVideoId().equals(videoID)) {
-                return video;
-            }
-        }
-        throw new Exception("No s'ha trobat");
-    }
 
-    public Video getVideo(String videoId) throws Exception {
+    public Video findVideo(String videoId) throws Exception {
         for (Video video : videos) {
             if (video.getVideoId().equals(videoId)) {
                 return video;

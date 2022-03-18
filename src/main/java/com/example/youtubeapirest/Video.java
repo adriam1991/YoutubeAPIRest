@@ -10,6 +10,7 @@ public class Video {
     private String title;
     private String description;
     private String url;
+    private List<Valuation> rates = new ArrayList<>();
 
 
     public Video() {
@@ -26,6 +27,11 @@ public class Video {
 
     public String getTitle() {
         return title;
+    }
+
+    public List<Valuation> getRates() {
+
+        return rates;
     }
 
     public void setTitle(String title) throws Exception {
@@ -64,6 +70,12 @@ public class Video {
     public String getVideoId() {
         return id;
     }
+
+    public Valuation createValuation(Valuation rateToCreate) {
+        rates.add(rateToCreate);
+        return rateToCreate;
+    }
+
 
 
 }

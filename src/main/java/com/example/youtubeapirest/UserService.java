@@ -11,6 +11,7 @@ public class UserService {
     private List<User> users = new ArrayList<>();
 
 
+
     public User createUser(User userToCreate) {
         users.add(userToCreate);
         return userToCreate;
@@ -36,7 +37,7 @@ public class UserService {
     }
     public Video getVideo(String userId,String videoId) throws Exception {
         User user = findUser(userId);
-        Video video = user.getVideo(videoId);
+        Video video = user.findVideo(videoId);
         return video;
     }
 
@@ -64,5 +65,14 @@ public class UserService {
             }
             throw new Exception("No s'ha trobat");
         }
+
+    public Valuation valuateOnVideo(String userId,String videoId, Valuation valuationToCreate) throws Exception {
+
+        User user=findUser(userId);
+        Video video =user.findVideo(videoId);
+        video.createValuation(valuationToCreate);
+        return valuationToCreate;
     }
+
+}
 

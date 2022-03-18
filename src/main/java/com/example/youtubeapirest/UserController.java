@@ -48,4 +48,10 @@ public class UserController {
     public void updateUser(@RequestBody User userToUpdate, @PathVariable String userId) throws Exception {
         userService.updateUser(userToUpdate,userId);
     }
+    @PostMapping("/users/{userId}/videos/{videoId}")
+    public Valuation valuateVideo(@PathVariable String userId,@PathVariable String videoId,@RequestBody Valuation valuationToCreate) throws Exception {
+        return userService.valuateOnVideo(userId,videoId,valuationToCreate);
+
+    }
+
 }
