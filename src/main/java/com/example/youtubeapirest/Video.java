@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class Video {
 
-    private String videoId = UUID.randomUUID().toString();
+    private String id = UUID.randomUUID().toString();
     private String title;
     private String description;
     private String url;
@@ -18,6 +18,7 @@ public class Video {
     public Video(String title, String description, String url) throws Exception {
         checkUrl(url);
         checkTitle(title);
+        checkDescription(description);
         this.title = title;
         this.description = description;
         this.url = url;
@@ -27,7 +28,8 @@ public class Video {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title) throws Exception {
+        checkTitle(title);
         this.title = title;
     }
 
@@ -35,7 +37,8 @@ public class Video {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(String description) throws Exception {
+        checkDescription(description);
         this.description = description;
     }
 
@@ -43,20 +46,23 @@ public class Video {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(String url) throws Exception {
+        checkUrl(url);
         this.url = url;
     }
 
     private void checkTitle(String title) throws Exception {
-        if(title.length()>10)throw new Exception("El titol te mes de 10 caracters");
+        if(title.length()<10)throw new Exception("El titol te mes de 10 caracters");
     }
-
+    private void checkDescription(String description) throws Exception {
+        if (description.equals("")) throw new Exception();
+    }
     private void checkUrl(String url) throws Exception {
-        if(url.contains("www"))throw new Exception("El titol te mes de 10 caracters");
+        if(!url.contains("www"))throw new Exception("invalid URL");
     }
 
     public String getVideoId() {
-        return videoId;
+        return id;
     }
 
 

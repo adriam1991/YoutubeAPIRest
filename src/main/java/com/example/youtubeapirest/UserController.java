@@ -39,7 +39,7 @@ public class UserController {
         return userService.getVideo(userId, videoId);
     }
 
-    @DeleteMapping("/users/{userId}/videos/{videoId}")
+    @DeleteMapping("/users/{userId}/videos")
     public void removeAllVideos(@PathVariable String userId) throws Exception {
         userService.removeAllVideos(userId);
     }

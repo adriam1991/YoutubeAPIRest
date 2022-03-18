@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class User {
 
-    private String userId = UUID.randomUUID().toString();
+    private String id = UUID.randomUUID().toString();
     private String name;
     private String email;
     private String password;
@@ -17,17 +17,26 @@ public class User {
 
     public User(String id, String name, String email, String password) throws Exception {
         checkPassword(password);
+        checkName(name);
+        checkEmail(email);
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
     private void checkPassword(String password) throws Exception {
-        if(password.length()>7&&password.matches("[1-9]*"))throw new Exception();
+        if(!password.toUpperCase().matches("([0-9a-zA-Z]){7,15}$"))throw new Exception("invalid password");
+    }
+
+    private void checkName(String name) throws Exception {
+        if (name.equals("")) throw new Exception();
+    }
+    private void checkEmail(String email) throws Exception {
+        if (email.equals("")) throw new Exception("invalid email");
     }
 
     public String getUserId() {
-        return userId;
+        return id;
     }
     public List<Video> getVideos() {
         return videos;
@@ -36,7 +45,8 @@ public class User {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws Exception {
+        checkName(name);
         this.name = name;
     }
 
@@ -44,15 +54,18 @@ public class User {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email) throws Exception {
+        checkEmail(email);
         this.email = email;
     }
+
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password) throws Exception {
+        checkPassword(password);
         this.password = password;
     }
 
